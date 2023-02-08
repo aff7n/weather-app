@@ -1,0 +1,74 @@
+CURRENT LOCATION METHOD (NOT WORKING) //
+useEffect(() => {
+  const fetchData = async () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
+
+    await fetch(
+      `${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result);
+        console.log(result);
+      });
+  };
+  fetchData();
+}, [lat, long]);
+
+
+  CURRENT LOCATION METHOD (WORKING) //
+  useEffect(() => {
+    const fetchData = async () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        makeApiRequest(lat, long);
+      });
+    };
+
+    const makeApiRequest = async (lat, long) => {
+      const apiUrl = `${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`;
+
+      await fetch(apiUrl)
+        .then((res) => res.json())
+        .then((result) => {
+          setData(result);
+          console.log(result);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+
+    useEffect(() => {
+    const fetchData = async (cityName) => {
+      const apiUrl = `${process.env.REACT_APP_API_URL}/weather/?q=${cityName}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`;
+
+      await fetch(apiUrl)
+        .then((res) => res.json())
+        .then((result) => {
+          setData(result);
+          console.log(result);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+
+  // ERROR BOUNDARY
+  {typeof data.main != "undefined" ? (
+        <div>
+          <Weather weatherData={data} />
+        </div>
+      ) : (
+        <div>
+          <Dimmer active>
+            <Loader>Loading...</Loader>
+          </Dimmer>
+        </div>
+      )}
