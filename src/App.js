@@ -7,6 +7,8 @@ export default function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [data, setData] = useState([]);
+  const API_URL = "https://api.openweathermap.org/data/2.5";
+
 
   // CURRENT LOCATION METHOD (WORKING) //
   useEffect(() => {
@@ -19,7 +21,7 @@ export default function App() {
     };
 
     const makeApiRequest = async (lat, long) => {
-      const apiUrl = `${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`;
+      const apiUrl = `${API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=a305dc832c5fbed7cb85bf02bc12302e`;
 
       await fetch(apiUrl)
         .then((res) => res.json())
