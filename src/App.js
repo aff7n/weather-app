@@ -34,7 +34,7 @@ export default function App() {
 
   return (
     <div className="App">
-//       {/* {typeof data.main != "undefined" ? (
+    {typeof data.main != "undefined" ? (
         <Weather weatherData={data} />
       ) : (
         <div>
@@ -42,8 +42,8 @@ export default function App() {
             <Loader>Loading...</Loader>
           </Dimmer>
         </div>
-      )} */}
-      <Weather weatherData={data} />
+      )}
+      {/* <Weather weatherData={data} /> */}
     </div>
   );
 }
