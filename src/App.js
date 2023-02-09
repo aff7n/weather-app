@@ -34,16 +34,16 @@ export default function App() {
 
   return (
     <div className="App">
-      {typeof data.main != "undefined" ? (
-        <Weather weatherData={data} />
-      ) : (
-        <div>
-          <Dimmer active>
-            <Loader>Loading...</Loader>
-          </Dimmer>
-        </div>
-      )}
-      {/* <Weather weatherData={data} /> */}
+//       {typeof data.main != "undefined" ? (
+//         <Weather weatherData={data} />
+//       ) : (
+//         <div>
+//           <Dimmer active>
+//             <Loader>Loading...</Loader>
+//           </Dimmer>
+//         </div>
+//       )}
+      <Weather weatherData={data} />
     </div>
   );
 }
