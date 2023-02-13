@@ -10,22 +10,27 @@ const refresh = () => {
 };
 
 const WeatherCard = ({ weatherData }) => {
-  const iconcode = weatherData.weather[0].icon;
-  const iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+  // const iconcode = weatherData.weather[0].icon;
+  // const iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
   return (
     <div>
-      <Button
+      {/* <Button
         className="button"
         inverted
         color="blue"
         circular
         icon="refresh"
         onClick={refresh}
-      />
+      /> */}
       <div className="container">
         {/* <img className="icon" src={iconurl} alt="weather icon" /> */}
-        <p className="temp">{weatherData.main.temp} &deg;C</p>
+        <div className="temp-div">
+          <p className="temp">{weatherData.main.temp} &deg;C</p>
+          <p className="feels-like">
+            Feels like {weatherData.main.feels_like} &deg;C
+          </p>
+        </div>
         <p className="description"> {weatherData.weather[0].description}</p>
         <p className="location">{weatherData.name}</p>
         <FontAwesomeIcon className="font-icon" icon={faMapMarkerAlt} />
@@ -38,7 +43,6 @@ const WeatherCard = ({ weatherData }) => {
             <br />
             {weatherData.wind.speed}KM
           </p>
-          <div className="vl"></div>
           <p className="condition">
             Humidity
             <br />
