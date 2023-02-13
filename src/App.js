@@ -1,14 +1,14 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Weather from "./components/weather";
+// import DayNightDisplay from "./components/DayNightDisplay";
 import { Dimmer, Loader } from "semantic-ui-react";
 
 export default function App() {
-  const [lat, setLat] = useState([]);
-  const [long, setLong] = useState([]);
+  // const [lat, setLat] = useState([]);
+  // const [long, setLong] = useState([]);
   const [data, setData] = useState([]);
   const API_URL = "https://api.openweathermap.org/data/2.5";
-
 
   // CURRENT LOCATION METHOD (WORKING) //
   useEffect(() => {
@@ -36,8 +36,11 @@ export default function App() {
 
   return (
     <div className="App">
-    {typeof data.main != "undefined" ? (
-        <Weather weatherData={data} />
+      {typeof data.main != "undefined" ? (
+        <div>
+          <Weather weatherData={data} />
+          {/* <DayNightDisplay /> */}
+        </div>
       ) : (
         <div>
           <Dimmer active>
